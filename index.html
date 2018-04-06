@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title>Pokémon Wallet</title>
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/react@16/umd/react.development.js" charset="utf-8"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" charset="utf-8"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js" charset="utf-8"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+
+    class App extends React.Component {
+
+      constructor(props) {
+        super(props)
+        this.state = {
+          savedCollection: [],
+          searchedCollection: [], 
+          search: ''
+        }
+        this.searchForPokemon = this.searchForPokemon.bind(this)
+        this.onSearchChange = this.onSearchChange.bind(this)
+        // this.addToCollection = this.addToCollection.bind(this)
+        // this.fetchCollection = this.fetchCollection.bind(this)
+      }
+
+      // fetchCollection(response) {
+      //   this.setState({
+      //     collection: response
+      //   })
+
+      // }
+
+      handleSearchCollection(search) {
+
+      }
+
+      onSearchChange(event) {
+      	this.setState({
+      		search: event.target.value
+      	})
+      }
+      
+      searchForPokemon(e) {
+      	e.preventDefault()
+      	console.log('hello')
+      	console.log('this is the event', e)
+      	console.log(this.state.search)
+
+        // axios.post('/searchPokemon', search)
+        //   .then( (response) => {
+        //     console.log(response)
+
+        //     // must slice to make a copy, then push and set state 
+
+        //     let latestSearch = this.state.unshift(response.body)
+        //     this.setState({
+        //       search : latestSearch
+        //     })
+        //   })
+        //   .catch( (err) => {
+        //     console.log(err)
+        //   })
+      }
+
+      // addToCollection(newPokemon) { // take out from search too 
+      //   axios.post('/', newPokemon)
+      //     .then( (response)=> {
+      //       console.log(response)
+      //       this.fetchCollection(response)
+      //     })
+      //     .catch( (err) => {
+      //       console.log(err)
+      //     })
+      // }
+
+
+      // deleteFromCollection(deletePokemon) {
+      //   axios.post('/', )
+      // }
+
+      render() {
+        return (
+            <div>
+          	<Search searchFunc={this.searchForPokemon} 
+          			changeHandler={this.onSearchChange}
+                    input={this.state.search}/>
+
+				<div>App component</div>
+    			
+    		</div>
+      
+        
+          )  
+      }
+    } 
+
+    class Search extends React.Component {
+        
+    	constructor(props) {
+    		super(props)
+    	}
+
+    	render() {
+    	console.log(this.props)
+
+    	 return (
+    	 	<div>
+    	 	   <h1>Search Pokemon</h1>
+    	 	   <form onSubmit={(e) => this.props.searchFunc(e)}>
+	    	 	   <label> 
+	    	 	   Search here:
+	    	 	   		<input type='text' 
+	    	 	   		       value={this.props.input} 
+	    	 	   		       onChange={(e) => this.props.changeHandler(e)}/>
+	    	 	   </label>
+    	 	   </form>
+
+    	 	</div>
+    		)
+    	}
+    }
+
+    ReactDOM.render(<App/>, document.getElementById('app'))
+    </script>
+</body>
+</html>
+
+

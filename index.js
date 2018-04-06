@@ -12,6 +12,7 @@ app.listen(port, function() {
 	console.log(`Yay! Listening on port ${port}`)
 })
 
+
 app.get('/', (req, res) => {
 	console.log('this is get request')
 	res.status(201)
@@ -19,14 +20,14 @@ app.get('/', (req, res) => {
 })
 
 app.post('/', (req, res) => {
-	pokemonFetcher(req.body.search, function(result) {
+	let pokename = req.body.search.toLowerCase()
+	pokemonFetcher(pokename, function(result) {
 		console.log('inside post function',result)
+		res.json(result)
 	})
 
-	res.send("HELLO GETTING POST'")
+	//res.send("HELLO GETTING POST'")
 })
-
-
 
 
 //GET api/v2/pokemon-species/{id or name} to get family and 
