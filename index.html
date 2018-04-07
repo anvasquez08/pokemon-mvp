@@ -14,7 +14,7 @@
     <script type="text/babel">
 
     class App extends React.Component {
-// filtering 
+
       constructor(props) {
         super(props)
         this.state = {
@@ -61,9 +61,6 @@
       }
     }
 
-
-
-
     class Search extends React.Component {  
       constructor(props) {
     	super(props)
@@ -87,10 +84,16 @@
     }
 
   const SearchList = (props) => {
-  	console.log('these are props',props.searchedCollection)
-  	return <h1>Hello, {props.name}</h1>
-  	
-  }
+  	return (
+	    props.searchedCollection.map( (pokemon) => {
+			return <ul> 
+					    <li>{pokemon.name} </li> 
+					    <li>{pokemon.ability}</li>
+					    <img src={pokemon.image}/>
+			    	</ul> 
+			})
+  		)	
+  	}
 
 
 
