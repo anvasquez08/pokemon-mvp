@@ -19,14 +19,12 @@ app.get('/', (req, res) => {
 
 })
 
-app.post('/', (req, res) => {
+app.post('/searchPokemon', (req, res) => {
 	let pokename = req.body.search.toLowerCase()
+  
 	pokemonFetcher(pokename, function(result) {
-		console.log('inside post function',result)
-		res.json(result)
+		res.send(result)
 	})
-
-	//res.send("HELLO GETTING POST'")
 })
 
 
